@@ -17,25 +17,24 @@ class Case {
 public:
     Case();
     void ChangeCaseVide();
-     void Augmenter();
-     string displayCase() const;
-     void displayNumberCase();
-     bool  IsBombe();
-     void changeInBombe();
-     bool isreveal();
-    void changeReveal();
-    void devoilerNumber() ;
+    void Augmenter();
+    string displayCase() const;
+    void DisplayNumberCase();
+    bool  IsBombe();
+    void ChangeCaseInBombe();
+    bool Isreveal();
+    void ChangeCaseReveal();
+    void DevoilerCaseNbr() ;
     void Voiler();
-    int getNumberCase();
-    void changeMethod(int n);
+    int GetNumberCase();
     void Boucles(int n);
     // destructor
      ~Case();
-     
+     //print objt
     friend ostream & operator << (ostream &out, const Case &c);
 
 private:
-    bool cases,reveal;
+    bool cases,caserevelee;
     int quantiteBombes;
     string caseImg;
     void ModifyDisplayBombe();
