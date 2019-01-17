@@ -44,10 +44,10 @@ void Grille::CreateColumnsDynamic() {
 
     }
 }
- int Grille:: Getrows() {
+ int Grille:: Getrows() const{
      return this->rows;
  }
- int Grille::Getcolumns() {
+ int Grille::Getcolumns() const {
      return this->columns;
  }
 // lorsqu'on trouve une case vide va chercher
@@ -95,29 +95,29 @@ int Grille::DevoilerCasesVides(int row,int col) {
         }
 }
 // chercher les bombes et modifier le nombre de Case toutes le cases ont pare defaut 0 comme valeur
-void Grille::ChercherBombes(int rowsize, int colssize) {
+void Grille::ChercherBombes() {
 
-    for (int row = 0; row < rowsize; ++row) {
+    for (int row = 0; row < this->Getrows(); ++row) {
 
-        for (int col = 0; col < colssize; ++col) {
+        for (int col = 0; col < this->Getcolumns(); ++col) {
 
             if (this->_grillecases[row][col].IsBombe()) {
-                if (row + 1 < rowsize)
+                if (row + 1 < this->Getrows())
                     this->_grillecases[row + 1][col].Augmenter();
                 if (row - 1 > -1)
                     this->_grillecases[row - 1][col].Augmenter();
-                if (col + 1 < colssize) {
+                if (col + 1 < this->Getcolumns()) {
                     this->_grillecases[row][col + 1].Augmenter();
                     if (row - 1 > -1)
                         this->_grillecases[row - 1][col + 1].Augmenter();
-                    if (row + 1 < rowsize)
+                    if (row + 1 < this->Getrows())
                         this->_grillecases[row + 1][col + 1].Augmenter();
                 }
                 if (col - 1 > -1) {
                     this->_grillecases[row][col - 1].Augmenter();
                     if (row - 1 > -1)
                         this->_grillecases[row - 1][col - 1].Augmenter();
-                    if (row + 1 < rowsize)
+                    if (row + 1 <  this->Getrows())
                         this->_grillecases[row + 1][col - 1].Augmenter();
                 }
             }
