@@ -3,12 +3,12 @@
 
 Case::Case(){
     this->cases=false;
-    this->quantiteBombes=0;
+    this->quantityBombs=0;
     this->caseImg="x";
-    this->caserevelee=false;
+    this->casereveal=false;
 }
 
-string Case::displayCase() const {
+string Case::DisplayCase() const {
 
 
     return this->caseImg;
@@ -20,10 +20,10 @@ bool Case::IsBombe() {
 }
 ostream & operator << (ostream &out, const Case &c)
 {
-    out << c.displayCase()<< endl;
+    out << c.DisplayCase()<< endl;
     return out;
 }
-void Case::ChangeCaseInBombe() {
+void Case::TurnCaseInBombe() {
 
     this->cases=true;
     this->ModifyDisplayBombe();
@@ -33,34 +33,34 @@ void Case::ModifyDisplayBombe() {
     this->caseImg="*";
 }
 void Case::DisplayNumberCase() {
-    cout<<this->quantiteBombes;
+    cout<<this->quantityBombs;
 }
-void Case::Augmenter() {
-    this->quantiteBombes+=1;
+void Case::IncreaseValueCase() {
+    this->quantityBombs+=1;
     //this->caseImg=to_string(this->quantiteBombes);
 }
 bool Case::Isreveal() {
-        return this->caserevelee;
+        return this->casereveal;
 }
-void Case::ChangeCaseReveal(){
-    this->caserevelee=true;
+void Case::TurnCaseReveal(){
+    this->casereveal=true;
 }
 void Case::DevoilerCaseNbr() {
 
-    if(this->quantiteBombes==0)
+    if(this->quantityBombs==0)
         this->caseImg= " ";
     else
-        this->caseImg=to_string(this->quantiteBombes);
+        this->caseImg=to_string(this->quantityBombs);
 
 }
 
-void Case::Voiler(){
+void Case::HideCase(){
     this->caseImg="v";
 }
 int Case::GetNumberCase() {
-    return this->quantiteBombes;
+    return this->quantityBombs;
 }
-void Case::ChangeCaseVide() {
+void Case::TurnCaseInEmpty() {
     this->caseImg=" ";
 }
 

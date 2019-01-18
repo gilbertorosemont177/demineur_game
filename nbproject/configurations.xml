@@ -16,6 +16,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Case.cpp</itemPath>
+      <itemPath>GameDemineur.cpp</itemPath>
       <itemPath>Grille.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -47,6 +48,8 @@
       <item path="Case.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Case.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameDemineur.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameDemineur.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -80,6 +83,8 @@
       <item path="Case.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Case.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameDemineur.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameDemineur.h" ex="false" tool="3" flavor2="0">
       </item>

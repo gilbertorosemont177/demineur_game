@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Case.o \
+	${OBJECTDIR}/GameDemineur.o \
 	${OBJECTDIR}/Grille.o \
 	${OBJECTDIR}/main.o
 
@@ -68,6 +69,11 @@ ${OBJECTDIR}/Case.o: Case.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Case.o Case.cpp
+
+${OBJECTDIR}/GameDemineur.o: GameDemineur.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameDemineur.o GameDemineur.cpp
 
 ${OBJECTDIR}/Grille.o: Grille.cpp 
 	${MKDIR} -p ${OBJECTDIR}
