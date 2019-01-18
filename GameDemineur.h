@@ -16,13 +16,13 @@ class GameDemineur {
     public :
     GameDemineur();
      void MessageGameStart();
-     void ChoixPlay(int choix);
-    void ChoixActionGame(int choix);
+     void ChoicePlayLevel(int choix);
+    void ChoiceAction(int choix);
     void GoToMenuPrincipal();
     void Play(int x, int y);
-    void GetCoordonneesXY();
-    void menuintoGame();
-    int ValidationNumber();
+    void GetCoordinatesXY();
+    void MenuGameStarted();
+    int ValidationOptionNumber();
 //    void testMenu();
 
 

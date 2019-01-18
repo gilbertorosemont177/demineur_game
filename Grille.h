@@ -22,9 +22,11 @@ public:
     void PrintGrilles();
     int Getrows() const;
     int Getcolumns() const;
-    //int RevealCasesEmptys(int posrow,int poscol);
+      void DeleteCases();
 
+    Case **& GetCases() ;
     ~Grille();
+    //int RevealCasesEmptys(int posrow,int poscol);
 
 private:
 

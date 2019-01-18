@@ -51,7 +51,7 @@ void Grille::CreateColumnsDynamic() {
      return this->_columns;
  }
 // lorsqu'on trouve une case vide va chercher
-int Grille::LookAllCasesEmptys(int posr,int poc) {
+int Grille::LookAllCasesEmptys(int row,int col) {
     //Case** &grille,
     if (row>this->_rows-1 || row<0 || col>this->_columns-1 || col<0){
         return -1;
@@ -126,4 +126,15 @@ void Grille::LookForBombs() {
 
     }
 
+}
+Grille::~Grille(){
+
+}
+
+Case **& Grille::GetCases() {
+    return this->_grillecases;
+}
+
+void Grille::DeleteCases(){
+    delete [] this->_grillecases;
 }
