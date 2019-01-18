@@ -34,9 +34,9 @@ public:
     friend ostream & operator << (ostream &out, const Case &c);
 
 private:
-    bool cases,casereveal;
-    int quantityBombs;
-    string caseImg;
+    bool _cases,_casereveal;
+    int _quantityBombs;
+    string _caseImg;
     void ModifyDisplayBombe();
 
 

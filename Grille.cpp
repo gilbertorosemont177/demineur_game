@@ -2,40 +2,40 @@
 #include "Grille.h"
 //Constructor par defaut
 Grille::Grille() {
-    this->columns=9;
-    this->rows=9;
-    this->casevide=false;
+    this->_columns=9;
+    this->_rows=9;
+    this->_caseempty=false;
     this->CreateColumnsDynamic();
 }
 
 Grille::Grille(int rows, int columns) {
-    this->columns=columns;
-    this->rows=rows;
+    this->_columns=columns;
+    this->_rows=rows;
     this->CreateColumnsDynamic();
-    this->casevide=false;
+    this->_caseempty=false;
 
 }
 
 void Grille::CreateColumnsDynamic() {
-    this->_grillecases=new Case*[this->rows];
-    for (int row = 0; row < rows; ++row)
-        this->_grillecases[row]= new Case[columns];
+    this->_grillecases=new Case*[this->_rows];
+    for (int row = 0; row < _rows; ++row)
+        this->_grillecases[row]= new Case[_columns];
 
-    for (int i = 0; i <  rows; ++i){
-        for (int j = 0; j < columns; ++j){
+    for (int i = 0; i <  _rows; ++i){
+        for (int j = 0; j < _columns; ++j){
 
             /** bombes test*/
             if(i==0 && j==4) {
-                this->_grillecases[i][j].ChangeCaseInBombe();
+                this->_grillecases[i][j].TurnCaseInBombe();
             }
             if(i==2 && j==4) {
-                this->_grillecases[i][j].ChangeCaseInBombe();
+                this->_grillecases[i][j].TurnCaseInBombe();
             }
             if(i==2 && j==2) {
-                this->_grillecases[i][j].ChangeCaseInBombe();
+                this->_grillecases[i][j].TurnCaseInBombe();
             }
             if(i==7 &&j==7){
-                this->_grillecases[i][j].ChangeCaseInBombe();
+                this->_grillecases[i][j].TurnCaseInBombe();
             }
 
             /**end bombes test**/
@@ -45,15 +45,15 @@ void Grille::CreateColumnsDynamic() {
     }
 }
  int Grille:: Getrows() const{
-     return this->rows;
+     return this->_rows;
  }
  int Grille::Getcolumns() const {
-     return this->columns;
+     return this->_columns;
  }
 // lorsqu'on trouve une case vide va chercher
-int Grille::DevoilerCasesVides(int row,int col) {
+int Grille::LookAllCasesEmptys(int posr,int poc) {
     //Case** &grille,
-    if (row>this->rows-1 || row<0 || col>this->columns-1 || col<0){
+    if (row>this->_rows-1 || row<0 || col>this->_columns-1 || col<0){
         return -1;
     }
     if(this->_grillecases[row][col].IsBombe()){
@@ -64,38 +64,38 @@ int Grille::DevoilerCasesVides(int row,int col) {
         return 1;
     }
     if(this->_grillecases[row][col].GetNumberCase()>0){
-        this->_grillecases[row ][col].ChangeCaseReveal();
+        this->_grillecases[row ][col].TurnCaseReveal();
     }
         if (this->_grillecases[row ][col].GetNumberCase() == 0) {
-            this->_grillecases[row ][col].ChangeCaseReveal();
-            if (DevoilerCasesVides(row - 1, col - 1) == 1) {
-                DevoilerCasesVides(row - 1, col - 1);
+            this->_grillecases[row ][col].TurnCaseReveal();
+            if (LookAllCasesEmptys(row - 1, col - 1) == 1) {
+                LookAllCasesEmptys(row - 1, col - 1);
             }
-            if (DevoilerCasesVides(row + 1, col + 1) == 1) {
-                DevoilerCasesVides(row + 1, col + 1);
+            if (LookAllCasesEmptys(row + 1, col + 1) == 1) {
+                LookAllCasesEmptys(row + 1, col + 1);
             }
-            if (DevoilerCasesVides( row -1, col ) == 1) {
-                DevoilerCasesVides(row - 1, col );
+            if (LookAllCasesEmptys( row -1, col ) == 1) {
+                LookAllCasesEmptys(row - 1, col );
             }
-            if(DevoilerCasesVides(row-1,col+1)==1){
-                DevoilerCasesVides(row - 1, col+1 );
+            if(LookAllCasesEmptys(row-1,col+1)==1){
+                LookAllCasesEmptys(row - 1, col+1 );
             }
-            if(DevoilerCasesVides(row,col-1)==1){
-                DevoilerCasesVides(row,col-1);
+            if(LookAllCasesEmptys(row,col-1)==1){
+                LookAllCasesEmptys(row,col-1);
             }
-            if(DevoilerCasesVides(row,col+1)==1){
-                DevoilerCasesVides(row,col+1);
+            if(LookAllCasesEmptys(row,col+1)==1){
+                LookAllCasesEmptys(row,col+1);
             }
-            if(DevoilerCasesVides(row+1,col-1)==1){
-                DevoilerCasesVides(row+1,col-1);
+            if(LookAllCasesEmptys(row+1,col-1)==1){
+               LookAllCasesEmptys(row+1,col-1);
             }
-            if(DevoilerCasesVides(row+1,col)==1){
-                DevoilerCasesVides(row+1,col);
+            if(LookAllCasesEmptys(row+1,col)==1){
+               LookAllCasesEmptys(row+1,col);
             }
         }
 }
 // chercher les bombes et modifier le nombre de Case toutes le cases ont pare defaut 0 comme valeur
-void Grille::ChercherBombes() {
+void Grille::LookForBombs() {
 
     for (int row = 0; row < this->Getrows(); ++row) {
 
@@ -103,22 +103,22 @@ void Grille::ChercherBombes() {
 
             if (this->_grillecases[row][col].IsBombe()) {
                 if (row + 1 < this->Getrows())
-                    this->_grillecases[row + 1][col].Augmenter();
+                    this->_grillecases[row + 1][col].IncreaseValueCase();
                 if (row - 1 > -1)
-                    this->_grillecases[row - 1][col].Augmenter();
+                    this->_grillecases[row - 1][col].IncreaseValueCase();
                 if (col + 1 < this->Getcolumns()) {
-                    this->_grillecases[row][col + 1].Augmenter();
+                    this->_grillecases[row][col + 1].IncreaseValueCase();
                     if (row - 1 > -1)
-                        this->_grillecases[row - 1][col + 1].Augmenter();
+                        this->_grillecases[row - 1][col + 1].IncreaseValueCase();
                     if (row + 1 < this->Getrows())
-                        this->_grillecases[row + 1][col + 1].Augmenter();
+                        this->_grillecases[row + 1][col + 1].IncreaseValueCase();
                 }
                 if (col - 1 > -1) {
-                    this->_grillecases[row][col - 1].Augmenter();
+                    this->_grillecases[row][col - 1].IncreaseValueCase();
                     if (row - 1 > -1)
-                        this->_grillecases[row - 1][col - 1].Augmenter();
+                        this->_grillecases[row - 1][col - 1].IncreaseValueCase();
                     if (row + 1 <  this->Getrows())
-                        this->_grillecases[row + 1][col - 1].Augmenter();
+                        this->_grillecases[row + 1][col - 1].IncreaseValueCase();
                 }
             }
 

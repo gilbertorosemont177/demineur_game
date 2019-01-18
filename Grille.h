@@ -16,13 +16,13 @@ public:
     Grille(int rows, int columns);
     Grille();
 
-    void CaseVide(Case** &grille,int posr,int poc);
-    void ChercherBombes();
+    int LookAllCasesEmptys(int posr,int poc);
+    void LookForBombs();
     
     void PrintGrilles();
     int Getrows() const;
     int Getcolumns() const;
-    int DevoilerCasesVides(int posrow,int poscol);
+    //int RevealCasesEmptys(int posrow,int poscol);
 
     ~Grille();
 
@@ -30,9 +30,9 @@ private:
 
     Case **_grillecases;
     void CreateColumnsDynamic();
-    int rows;//x
-    int columns;//y
-    bool casevide;
+    int _rows;//x
+    int _columns;//y
+    bool _caseempty;
 };
 
 
