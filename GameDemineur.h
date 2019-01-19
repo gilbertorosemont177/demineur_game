@@ -23,6 +23,7 @@ class GameDemineur {
     void GetCoordinatesXY();
     void MenuGameStarted();
     int ValidationOptionNumber();
+    int ValidationCoordinates();
 //    void testMenu();
 
 
@@ -40,8 +41,5 @@ private :
 };
 
     
-  
-
-
 #endif	/* GAMEDEMINEUR_H */
 

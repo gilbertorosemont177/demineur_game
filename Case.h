@@ -27,6 +27,7 @@ public:
     void DevoilerCaseNbr() ;
     void HideCase();
     int GetNumberCase();
+     void ModifyDisplayBombe();
     //void Loops(int n);
     // destructor
      ~Case();
@@ -37,7 +38,7 @@ private:
     bool _cases,_casereveal;
     int _quantityBombs;
     string _caseImg;
-    void ModifyDisplayBombe();
+   
 
 
 };

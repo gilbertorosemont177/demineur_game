@@ -5,13 +5,14 @@ Grille::Grille() {
     this->_columns=9;
     this->_rows=9;
     this->_caseempty=false;
+    this->_gameover=false;
     this->CreateColumnsDynamic();
 }
 
 Grille::Grille(int rows, int columns) {
     this->_columns=columns;
     this->_rows=rows;
- 
+    this->_gameover=false;
     this->_caseempty=false;
        this->CreateColumnsDynamic();
 
@@ -154,31 +155,53 @@ void Grille::PrintGrilles(){
             cout << endl;
         }
         for (int j = 0; j < this->Getcolumns(); ++j) {
-
-
+       
             if (this->_grillecases[i][j].Isreveal()) {
-                this->_grillecases[i][j].DevoilerCaseNbr();
-
-            } else if (!this->_grillecases[i][j].Isreveal() || this->_grillecases[i][j].IsBombe()) {
-                this->_grillecases[i][j].HideCase();
+                this->_grillecases[i][j].DevoilerCaseNbr();            
+            }
+            if(this->_gameover && this->_grillecases[i][j].IsBombe()){
+                this->_grillecases[i][j].ModifyDisplayBombe();
             }
             cout << "| " << this->_grillecases[i][j].DisplayCase();
-            if (j==this->Getcolumns()-1) {
-                cout << " |";
-            }
-
-
+                if (j==this->Getcolumns()-1) {
+                    cout << " |";
+                }
         }
-
-
         cout << endl;
         if (i == this->Getrows()-1) {
-
             for (int g = 0; g < 15; ++g)
                 cout << "__";
             cout << endl;
         }
-
     }
 
 }
+bool Grille::Win(){
+
+    int nbrbombs=5;
+    int casestotal=this->_columns*this->_rows;
+    int cases=casestotal-nbrbombs;
+    int compteurcasereveals=0;
+    for (int row=0; row<Getrows(); ++row){
+        for(int col=0; col<Getcolumns();++col){
+            if(this->_grillecases[row][col].Isreveal())
+                compteurcasereveals+=1;
+        }
+    }
+    if(compteurcasereveals==cases){
+        this->_gameover=true;
+        return true;
+        
+    }
+    return false;
+ }
+void Grille::RevealAllCases(){
+
+    for (int row=0; row<Getrows(); ++row){
+            for(int col=0; col<Getcolumns();++col){
+                this->_grillecases[row][col].TurnCaseReveal();  
+            }
+        }
+    this->_gameover=true;
+}
+//manque method creer des bombes aleatoires

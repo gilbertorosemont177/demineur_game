@@ -12,21 +12,11 @@
 #include "Case.h"
 using namespace std;
 
-/*
- * TEST DE LA CLASSE CASE et des methodes devoiler case vide et chercher bombes
- */
-void PrintGrilletest(Case** &grille,int rowssize, int colssize );
-void createGrilleGame(Case** &grille,int rows, int columns);
-void chercherBombes(Case** &grille,int r,int cx);
-int devoilerCasesVides(Case** &grille, int r ,int c);
-
-
-
-
 int  main(){
 
+    /*** TEST GAME DEMINEUR MODE CONSOLE MODE BEGINNER****/
   GameDemineur game;
-    game.MessageGameStart();
+  game.MessageGameStart();
    
 
    

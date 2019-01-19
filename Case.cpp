@@ -9,8 +9,6 @@ Case::Case(){
 }
 
 string Case::DisplayCase() const {
-
-
     return this->_caseImg;
 }
 Case::~Case() {}
@@ -26,7 +24,7 @@ ostream & operator << (ostream &out, const Case &c)
 void Case::TurnCaseInBombe() {
 
     this->_cases=true;
-    this->ModifyDisplayBombe();
+   // this->ModifyDisplayBombe();
 }
 void Case::ModifyDisplayBombe() {
 
@@ -47,7 +45,7 @@ void Case::TurnCaseReveal(){
 }
 void Case::DevoilerCaseNbr() {
 
-    if(this->_quantityBombs==0)
+    if(this->_quantityBombs==0 && !this->_cases)
         this->_caseImg= " ";
     else
         this->_caseImg=to_string(this->_quantityBombs);

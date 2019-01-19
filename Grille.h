@@ -24,6 +24,8 @@ public:
     int Getcolumns() const;
       void DeleteCases();
 
+      bool Win();
+      void RevealAllCases();
     Case **& GetCases() ;
     ~Grille();
     //int RevealCasesEmptys(int posrow,int poscol);
@@ -35,6 +37,7 @@ private:
     int _rows;//x
     int _columns;//y
     bool _caseempty;
+    bool _gameover;
 };
 
 
