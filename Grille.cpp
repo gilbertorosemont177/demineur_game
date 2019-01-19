@@ -11,8 +11,9 @@ Grille::Grille() {
 Grille::Grille(int rows, int columns) {
     this->_columns=columns;
     this->_rows=rows;
-    this->CreateColumnsDynamic();
+ 
     this->_caseempty=false;
+       this->CreateColumnsDynamic();
 
 }
 
@@ -35,6 +36,9 @@ void Grille::CreateColumnsDynamic() {
                 this->_grillecases[i][j].TurnCaseInBombe();
             }
             if(i==7 &&j==7){
+                this->_grillecases[i][j].TurnCaseInBombe();
+            }
+            if (i == 5 && j == 5) {
                 this->_grillecases[i][j].TurnCaseInBombe();
             }
 
@@ -137,4 +141,44 @@ Case **& Grille::GetCases() {
 
 void Grille::DeleteCases(){
     delete [] this->_grillecases;
+}
+void Grille::PrintGrilles(){
+    cout << "" << endl;
+    for (int i = 0; i < this->Getrows(); ++i) {
+        if (i == 0) {
+
+            for (int g = 0; g < 15; ++g) {
+                cout << "__";
+            }
+            cout << endl;
+            cout << endl;
+        }
+        for (int j = 0; j < this->Getcolumns(); ++j) {
+
+
+            if (this->_grillecases[i][j].Isreveal()) {
+                this->_grillecases[i][j].DevoilerCaseNbr();
+
+            } else if (!this->_grillecases[i][j].Isreveal() || this->_grillecases[i][j].IsBombe()) {
+                this->_grillecases[i][j].HideCase();
+            }
+            cout << "| " << this->_grillecases[i][j].DisplayCase();
+            if (j==this->Getcolumns()-1) {
+                cout << " |";
+            }
+
+
+        }
+
+
+        cout << endl;
+        if (i == this->Getrows()-1) {
+
+            for (int g = 0; g < 15; ++g)
+                cout << "__";
+            cout << endl;
+        }
+
+    }
+
 }

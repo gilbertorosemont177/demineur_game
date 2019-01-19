@@ -49,7 +49,7 @@ void GameDemineur::ChoicePlayLevel(int choix) {
 void  GameDemineur::LevelBeginner() {
     
 this->grille = Grille(9,9);
-    this->GrilleCases=this->grille.GetCases();
+    //this->GrilleCases=this->grille.GetCases();
     this->grille.LookForBombs();
 
     cout<<endl;
@@ -126,8 +126,8 @@ void GameDemineur::Play(int x,int y ){
 
 
 
-        if(this->GrilleCases[x][y].IsBombe()) {
-            this->GrilleCases[x][y].Isreveal();
+        if(this->grille.GetCases()[x][y].IsBombe()) {
+           this->grille.GetCases()[x][y].Isreveal();
             cout<<"BOOM!!!!!"<<endl;
             cout<<"VOUS AVEZ PERDU !!!!!"<<endl;
             MessageGameStart();

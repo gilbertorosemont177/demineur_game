@@ -32,7 +32,7 @@ private :
      void LevelAvance();
      void Exit();
     bool lost=false;
-    Case ** GrilleCases;
+  //  Case ** GrilleCases;
     Grille grille;
 
 
